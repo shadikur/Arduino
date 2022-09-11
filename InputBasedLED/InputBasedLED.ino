@@ -23,7 +23,7 @@ void loop() {
   Serial.print("You have entered: ");
   Serial.println(inputLed);
 
-  if (inputLed == "red") {
+  if (inputLed == "red" || inputLed == "Red") {
     digitalWrite(redLED, HIGH);
     digitalWrite(yellowLED, LOW);
     digitalWrite(greenLED, LOW);
