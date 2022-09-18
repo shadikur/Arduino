@@ -1,9 +1,10 @@
 int readPin = 12;
 int delayTime = 100;
-float readVal;
 int redLed = 4;
 int greenLed = 3;
-int ledState;
+int ledState = 0;
+int buttonNew;
+int buttonOld = 1;
 
 void setup()
 {
@@ -15,10 +16,23 @@ void setup()
 
 void loop()
 {
-  readVal = digitalRead(readPin);
-    Serial.println("Reading Value: ");
-    Serial.println(readVal);
-    
-    delay(delayTime);
-  
+
+  buttonNew = digitalRead(readPin);
+  Serial.println("Reading Value: ");
+  Serial.println(buttonNew);
+  if (buttonOld == 0 && buttonNew == 1){
+    if (ledState == 0){
+      digitalWrite(redLed, HIGH);
+      digitalWrite(greenLed, HIGH);
+      ledState = 1;
+    }
+    else {
+      digitalWrite(redLed, LOW);
+      digitalWrite(greenLed, LOW);
+      ledState = 0;
+    }
+  }
+  buttonOld = buttonNew;
+  delay(delayTime);
+
 }
